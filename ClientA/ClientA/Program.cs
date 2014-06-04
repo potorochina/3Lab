@@ -28,7 +28,7 @@ public class SynchronousSocketClient
             // Соединяем сокет с удаленной точкой
             try
             {
-                sender.Connect(remoteEP);
+                sender.Connect(remoteEP);//comment
                 Console.WriteLine("Socket connected to {0}",sender.RemoteEndPoint.ToString());
                 //Чтение ключа А из файла
                 byte[] keyA = File.ReadAllBytes("d:\\4 курс\\8 семестр\\Защиат информации\\лаба 3 Защита КИ\\keyA.txt");
