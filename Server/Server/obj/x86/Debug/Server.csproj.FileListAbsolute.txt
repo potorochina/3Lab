@@ -1,0 +1,10 @@
+C:\Users\Татьяна\Desktop\лаба 3 Защита КИ\Server\Server\bin\Debug\Server.exe
+C:\Users\Татьяна\Desktop\лаба 3 Защита КИ\Server\Server\bin\Debug\Server.pdb
+C:\Users\Татьяна\Desktop\лаба 3 Защита КИ\Server\Server\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Татьяна\Desktop\лаба 3 Защита КИ\Server\Server\obj\x86\Debug\Server.exe
+C:\Users\Татьяна\Desktop\лаба 3 Защита КИ\Server\Server\obj\x86\Debug\Server.pdb
+D:\4 курс\8 семестр\Защиат информации\лаба 3 Защита КИ\Server\Server\obj\x86\Debug\Server.exe
+D:\4 курс\8 семестр\Защиат информации\лаба 3 Защита КИ\Server\Server\obj\x86\Debug\Server.pdb
+D:\4 курс\8 семестр\Защиат информации\лаба 3 Защита КИ\Server\Server\bin\Debug\Server.exe
+D:\4 курс\8 семестр\Защиат информации\лаба 3 Защита КИ\Server\Server\bin\Debug\Server.pdb
+D:\4 курс\8 семестр\Защиат информации\лаба 3 Защита КИ\Server\Server\obj\x86\Debug\Server.csprojResolveAssemblyReference.cache

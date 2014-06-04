@@ -1,0 +1,10 @@
+C:\Users\Татьяна\Desktop\лаба 3 Защита КИ\ClientA\ClientA\bin\Debug\ClientA.exe
+C:\Users\Татьяна\Desktop\лаба 3 Защита КИ\ClientA\ClientA\bin\Debug\ClientA.pdb
+C:\Users\Татьяна\Desktop\лаба 3 Защита КИ\ClientA\ClientA\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Татьяна\Desktop\лаба 3 Защита КИ\ClientA\ClientA\obj\x86\Debug\ClientA.exe
+C:\Users\Татьяна\Desktop\лаба 3 Защита КИ\ClientA\ClientA\obj\x86\Debug\ClientA.pdb
+D:\4 курс\8 семестр\Защиат информации\лаба 3 Защита КИ\ClientA\ClientA\obj\x86\Debug\ClientA.exe
+D:\4 курс\8 семестр\Защиат информации\лаба 3 Защита КИ\ClientA\ClientA\obj\x86\Debug\ClientA.pdb
+D:\4 курс\8 семестр\Защиат информации\лаба 3 Защита КИ\ClientA\ClientA\bin\Debug\ClientA.exe
+D:\4 курс\8 семестр\Защиат информации\лаба 3 Защита КИ\ClientA\ClientA\bin\Debug\ClientA.pdb
+D:\4 курс\8 семестр\Защиат информации\лаба 3 Защита КИ\ClientA\ClientA\obj\x86\Debug\ClientA.csprojResolveAssemblyReference.cache
