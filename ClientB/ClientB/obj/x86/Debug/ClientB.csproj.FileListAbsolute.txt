@@ -7,3 +7,7 @@ D:\4 курс\8 семестр\Защиат информации\лаба 3 За
 D:\4 курс\8 семестр\Защиат информации\лаба 3 Защита КИ\ClientB\ClientB\obj\x86\Debug\ClientB.pdb
 D:\4 курс\8 семестр\Защиат информации\лаба 3 Защита КИ\ClientB\ClientB\bin\Debug\ClientB.exe
 D:\4 курс\8 семестр\Защиат информации\лаба 3 Защита КИ\ClientB\ClientB\bin\Debug\ClientB.pdb
+D:\4 курс\8 семестр\Защиат информации\3Lab\ClientB\ClientB\obj\x86\Debug\ClientB.exe
+D:\4 курс\8 семестр\Защиат информации\3Lab\ClientB\ClientB\obj\x86\Debug\ClientB.pdb
+D:\4 курс\8 семестр\Защиат информации\3Lab\ClientB\ClientB\bin\Debug\ClientB.exe
+D:\4 курс\8 семестр\Защиат информации\3Lab\ClientB\ClientB\bin\Debug\ClientB.pdb

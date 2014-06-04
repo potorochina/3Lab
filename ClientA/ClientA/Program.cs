@@ -31,7 +31,7 @@ public class SynchronousSocketClient
                 sender.Connect(remoteEP);//comment
                 Console.WriteLine("Socket connected to {0}",sender.RemoteEndPoint.ToString());
                 //Чтение ключа А из файла
-                byte[] keyA = File.ReadAllBytes("d:\\4 курс\\8 семестр\\Защиат информации\\лаба 3 Защита КИ\\keyA.txt");
+                byte[] keyA = File.ReadAllBytes("d:\\4 курс\\8 семестр\\Защиат информации\\3Lab\\keyA.txt");
                 // Create a new instance of the AesCryptoServiceProvider 
                 // class.  This generates a new key and initialization  
                 // vector (IV).
@@ -40,7 +40,7 @@ public class SynchronousSocketClient
                 string name = Console.ReadLine();
                 //получение текущего системного времени и даты
                 String time = DateTime.Now.ToString("MM.dd.yyyy HH:mm:ss");
-                string message = "{" + time + ", " + name+", " + Encoding.UTF8.GetString(aes.Key) + "}";
+                string message = "{" + time + ", " + name+", " + Encoding.UTF8.GetString(aes.Key) +"}";
                 byte[] IV = new byte[16];
                 //отправка зашифрованного сообщения 
                 sender.Send(EncryptStringToBytes_Aes(message, keyA, IV));

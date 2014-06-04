@@ -47,8 +47,8 @@ public class SynchronousSocketListener
                 data = null;
                 Console.WriteLine("Соединения с точкой А и B установлены.");
                 //чтение ключей А и В из файлов
-                byte[] keyA = File.ReadAllBytes("d:\\4 курс\\8 семестр\\Защиат информации\\лаба 3 Защита КИ\\keyA.txt");
-                byte[] keyB = File.ReadAllBytes("d:\\4 курс\\8 семестр\\Защиат информации\\лаба 3 Защита КИ\\keyB.txt");
+                byte[] keyA = File.ReadAllBytes("d:\\4 курс\\8 семестр\\Защиат информации\\3Lab\\keyA.txt");
+                byte[] keyB = File.ReadAllBytes("d:\\4 курс\\8 семестр\\Защиат информации\\3Lab\\keyB.txt");
                 byte[] IV = new byte[16];
                 DateTime time;
                 //ожидание клиента
@@ -65,17 +65,22 @@ public class SynchronousSocketListener
                 }
                 string decrypt = DecryptStringFromBytes_Aes(enc, keyA, IV);
                 Console.WriteLine("Принято сообщение от точки А: {0}", decrypt);
-                string message = decrypt.Substring(1,decrypt.IndexOf(',') - 1);//присвоение подстроки (время в принятом сообщении)
-                DateTime timeA = Convert.ToDateTime(message);//перевод строки в дату
+                string message_time = decrypt.Substring(1,decrypt.IndexOf(',') - 1);//присвоение подстроки (время в принятом сообщении)
+                string message_name = decrypt.Substring(22, decrypt.IndexOf(',') - 1);//присвоение подстроки имени
+                string message_key = decrypt.Substring(22, decrypt.IndexOf('}') - 1);//присвоение подстроки ключа
+                DateTime timeA = Convert.ToDateTime(message_time);//перевод строки в дату
                // DateComparisonResult comparison;//сравнение дат
                 int numSeconds = (time - timeA).Seconds;
-                System.TimeSpan diff = timeA.Subtract(time); 
-
-                if (numSeconds>5)
+                System.TimeSpan diff = timeA.Subtract(time);
+                if (numSeconds > 30)
                     Console.WriteLine("Полученное сообщение написано давно");
-                else
-                handlerB.Send(Encoding.UTF8.GetBytes(data));
-            }
+                else//если полученное сообщение написано недавно, формируем сообщение для В
+                {
+                    string nameA = "Alisa";
+                    string message = "{" + time + ", " + message_key + "}";
+                    //handlerB.Send(Encoding.UTF8.GetBytes(data));
+                }
+                }
         }
         catch (Exception e)
         {

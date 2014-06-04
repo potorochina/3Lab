@@ -31,7 +31,7 @@ public class SynchronousSocketClient
                 sender.Connect(remoteEP);
                 Console.WriteLine("Socket connected to {0}", sender.RemoteEndPoint.ToString());
                 //чтение ключа В из файла
-                byte[] keyB = File.ReadAllBytes("d:\\4 курс\\8 семестр\\Защиат информации\\лаба 3 Защита КИ\\keyB.txt");
+                byte[] keyB = File.ReadAllBytes("d:\\4 курс\\8 семестр\\Защиат информации\\3Lab\\keyB.txt");
                 string data = null;
                 while (true)
                 {

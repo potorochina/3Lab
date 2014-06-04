@@ -8,3 +8,8 @@ D:\4 курс\8 семестр\Защиат информации\лаба 3 За
 D:\4 курс\8 семестр\Защиат информации\лаба 3 Защита КИ\Server\Server\bin\Debug\Server.exe
 D:\4 курс\8 семестр\Защиат информации\лаба 3 Защита КИ\Server\Server\bin\Debug\Server.pdb
 D:\4 курс\8 семестр\Защиат информации\лаба 3 Защита КИ\Server\Server\obj\x86\Debug\Server.csprojResolveAssemblyReference.cache
+D:\4 курс\8 семестр\Защиат информации\3Lab\Server\Server\obj\x86\Debug\Server.exe
+D:\4 курс\8 семестр\Защиат информации\3Lab\Server\Server\obj\x86\Debug\Server.pdb
+D:\4 курс\8 семестр\Защиат информации\3Lab\Server\Server\bin\Debug\Server.exe
+D:\4 курс\8 семестр\Защиат информации\3Lab\Server\Server\bin\Debug\Server.pdb
+D:\4 курс\8 семестр\Защиат информации\3Lab\Server\Server\obj\x86\Debug\Server.csprojResolveAssemblyReference.cache
