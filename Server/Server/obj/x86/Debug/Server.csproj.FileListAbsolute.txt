@@ -13,3 +13,8 @@ D:\4 курс\8 семестр\Защиат информации\3Lab\Server\Ser
 D:\4 курс\8 семестр\Защиат информации\3Lab\Server\Server\bin\Debug\Server.exe
 D:\4 курс\8 семестр\Защиат информации\3Lab\Server\Server\bin\Debug\Server.pdb
 D:\4 курс\8 семестр\Защиат информации\3Lab\Server\Server\obj\x86\Debug\Server.csprojResolveAssemblyReference.cache
+c:\gitproga\3Lab\Server\Server\obj\x86\Debug\Server.exe
+c:\gitproga\3Lab\Server\Server\obj\x86\Debug\Server.pdb
+c:\gitproga\3Lab\Server\Server\bin\Debug\Server.exe
+c:\gitproga\3Lab\Server\Server\bin\Debug\Server.pdb
+c:\gitproga\3Lab\Server\Server\obj\x86\Debug\Server.csprojResolveAssemblyReference.cache

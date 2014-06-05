@@ -47,8 +47,8 @@ public class SynchronousSocketListener
                 data = null;
                 Console.WriteLine("Соединения с точкой А и B установлены.");
                 //чтение ключей А и В из файлов
-                byte[] keyA = File.ReadAllBytes("d:\\4 курс\\8 семестр\\Защиат информации\\3Lab\\keyA.txt");
-                byte[] keyB = File.ReadAllBytes("d:\\4 курс\\8 семестр\\Защиат информации\\3Lab\\keyB.txt");
+                byte[] keyA = File.ReadAllBytes("c:\\gitproga\\3Lab\\keyA.txt");
+                byte[] keyB = File.ReadAllBytes("c:\\gitproga\\3Lab\\keyB.txt");
                 byte[] IV = new byte[16];
                 DateTime time;
                 //ожидание клиента
@@ -67,7 +67,7 @@ public class SynchronousSocketListener
                 Console.WriteLine("Принято сообщение от точки А: {0}", decrypt);
                 string message_time = decrypt.Substring(1,decrypt.IndexOf(',') - 1);//присвоение подстроки (время в принятом сообщении)
                 string message_name = decrypt.Substring(22, decrypt.IndexOf(',') - 1);//присвоение подстроки имени
-                string message_key = decrypt.Substring(22, decrypt.IndexOf('}') - 1);//присвоение подстроки ключа
+                string message_key = decrypt.Substring(decrypt.IndexOf(';')-1, decrypt.IndexOf('}') - 1);//присвоение подстроки ключа
                 DateTime timeA = Convert.ToDateTime(message_time);//перевод строки в дату
                // DateComparisonResult comparison;//сравнение дат
                 int numSeconds = (time - timeA).Seconds;
@@ -77,7 +77,10 @@ public class SynchronousSocketListener
                 else//если полученное сообщение написано недавно, формируем сообщение для В
                 {
                     string nameA = "Alisa";
-                    string message = "{" + time + ", " + message_key + "}";
+                    string message = "{" + time + ", "+nameA +';' + message_key + "}";
+                   // byte[] IV = new byte[16];
+                    //отправка зашифрованного сообщения 
+                    handlerB.Send(EncryptStringToBytes_Aes(message, keyB, IV));
                     //handlerB.Send(Encoding.UTF8.GetBytes(data));
                 }
                 }
@@ -134,6 +137,43 @@ static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] I
             return plaintext;
 
         }
+
+static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
+{
+    // Check arguments. 
+    if (plainText == null || plainText.Length <= 0)
+        throw new ArgumentNullException("plainText");
+    if (Key == null || Key.Length <= 0)
+        throw new ArgumentNullException("Key");
+    if (IV == null || IV.Length <= 0)
+        throw new ArgumentNullException("Key");
+    byte[] encrypted;
+    // Create an AesCryptoServiceProvider object 
+    // with the specified key and IV. 
+    using (AesCryptoServiceProvider aesAlg = new AesCryptoServiceProvider())
+    {
+        aesAlg.Key = Key;
+        aesAlg.IV = IV;
+
+        // Create a decrytor to perform the stream transform.
+        ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+        // Create the streams used for encryption. 
+        using (MemoryStream msEncrypt = new MemoryStream())
+        {
+            using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+            {
+                using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                {
+                    //Write all data to the stream.
+                    swEncrypt.Write(plainText);
+                }
+                encrypted = msEncrypt.ToArray();
+            }
+        }
+    }
+    // Return the encrypted bytes from the memory stream. 
+    return encrypted;
+}
     
     [STAThread]
     public static int Main(String[] args)

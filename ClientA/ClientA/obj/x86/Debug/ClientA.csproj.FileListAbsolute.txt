@@ -13,3 +13,8 @@ D:\4 курс\8 семестр\Защиат информации\3Lab\ClientA\Cl
 D:\4 курс\8 семестр\Защиат информации\3Lab\ClientA\ClientA\bin\Debug\ClientA.exe
 D:\4 курс\8 семестр\Защиат информации\3Lab\ClientA\ClientA\bin\Debug\ClientA.pdb
 D:\4 курс\8 семестр\Защиат информации\3Lab\ClientA\ClientA\obj\x86\Debug\ClientA.csprojResolveAssemblyReference.cache
+c:\gitproga\3Lab\ClientA\ClientA\obj\x86\Debug\ClientA.exe
+c:\gitproga\3Lab\ClientA\ClientA\obj\x86\Debug\ClientA.pdb
+c:\gitproga\3Lab\ClientA\ClientA\bin\Debug\ClientA.exe
+c:\gitproga\3Lab\ClientA\ClientA\bin\Debug\ClientA.pdb
+c:\gitproga\3Lab\ClientA\ClientA\obj\x86\Debug\ClientA.csprojResolveAssemblyReference.cache

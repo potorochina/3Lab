@@ -11,3 +11,7 @@ D:\4 курс\8 семестр\Защиат информации\3Lab\ClientB\Cl
 D:\4 курс\8 семестр\Защиат информации\3Lab\ClientB\ClientB\obj\x86\Debug\ClientB.pdb
 D:\4 курс\8 семестр\Защиат информации\3Lab\ClientB\ClientB\bin\Debug\ClientB.exe
 D:\4 курс\8 семестр\Защиат информации\3Lab\ClientB\ClientB\bin\Debug\ClientB.pdb
+c:\gitproga\3Lab\ClientB\ClientB\obj\x86\Debug\ClientB.exe
+c:\gitproga\3Lab\ClientB\ClientB\obj\x86\Debug\ClientB.pdb
+c:\gitproga\3Lab\ClientB\ClientB\bin\Debug\ClientB.exe
+c:\gitproga\3Lab\ClientB\ClientB\bin\Debug\ClientB.pdb
