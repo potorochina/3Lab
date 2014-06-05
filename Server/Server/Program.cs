@@ -76,7 +76,7 @@ public class SynchronousSocketListener
                     Console.WriteLine("Полученное сообщение написано давно");
                 else//если полученное сообщение написано недавно, формируем сообщение для В
                 {
-                    string nameA = "Alisa";
+                    string nameA = "Alisa";//имя клиента А, который хочет связаться с клиентом В 
                     string message = "{" + time + ", " + message_key + "}";
                     //handlerB.Send(Encoding.UTF8.GetBytes(data));
                 }
