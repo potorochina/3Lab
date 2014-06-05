@@ -67,7 +67,7 @@ public class SynchronousSocketListener
                 Console.WriteLine("Принято сообщение от точки А: {0}", decrypt);
                 string message_time = decrypt.Substring(1,decrypt.IndexOf(',') - 1);//присвоение подстроки (время в принятом сообщении)
                 string message_name = decrypt.Substring(22, decrypt.IndexOf(',') - 1);//присвоение подстроки имени
-                string message_key = decrypt.Substring(22, decrypt.IndexOf('}') - 1);//присвоение подстроки ключа
+                string message_key = decrypt.Substring(decrypt.IndexOf(';')-1, decrypt.IndexOf('}') - 1);//присвоение подстроки ключа
                 DateTime timeA = Convert.ToDateTime(message_time);//перевод строки в дату
                // DateComparisonResult comparison;//сравнение дат
                 int numSeconds = (time - timeA).Seconds;
@@ -77,7 +77,7 @@ public class SynchronousSocketListener
                 else//если полученное сообщение написано недавно, формируем сообщение для В
                 {
                     string nameA = "Alisa";//имя клиента А, который хочет связаться с клиентом В 
-                    string message = "{" + time + ", " + message_key + "}";
+                    string message = "{" + time + ", "+nameA+", "+ message_key + "}";
                     //handlerB.Send(Encoding.UTF8.GetBytes(data));
                 }
                 }
