@@ -18,7 +18,7 @@ public class SynchronousSocketClient
         try
         {
             // устанавливаем удаленную точку для сокета
-            IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());
+            IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());//
             IPAddress ipAddress = ipHostInfo.AddressList[0];
             IPEndPoint remoteEP = new IPEndPoint(ipAddress, 11001);
 

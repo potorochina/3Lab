@@ -72,7 +72,7 @@ public class SynchronousSocketClient
         }
         catch (Exception e)
         {
-            Console.WriteLine(e.ToString());//
+            Console.WriteLine(e.ToString());////
         }
     }
     //Шифрование сообщения

@@ -48,7 +48,7 @@ public class SynchronousSocketListener
                 Console.WriteLine("Соединения с точкой А и B установлены.");
                 //чтение ключей А и В из файлов
                 byte[] keyA = File.ReadAllBytes("c:\\gitproga\\3Lab\\keyA.txt");
-                byte[] keyB = File.ReadAllBytes("c:\\gitproga\\3Lab\\keyB.txt");
+                byte[] keyB = File.ReadAllBytes("c:\\gitproga\\3Lab\\keyB.txt");//
                 byte[] IV = new byte[16];
                 DateTime time;
                 //ожидание клиента
