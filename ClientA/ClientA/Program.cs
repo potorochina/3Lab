@@ -6,10 +6,14 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 public class SynchronousSocketClient
 {
     static byte[] keyAES;
+    static byte[] IV;
+    static Socket sender;
+    static Thread threadA, threadSend;
     public static void StartClient()
     {
         // Буфер для входящих данных
@@ -23,7 +27,7 @@ public class SynchronousSocketClient
             IPEndPoint remoteEP = new IPEndPoint(ipAddress, 11000);
 
             // Create a TCP/IP  socket.
-            Socket sender = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            sender = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             // Соединяем сокет с удаленной точкой
             try
@@ -40,21 +44,24 @@ public class SynchronousSocketClient
                 string name = Console.ReadLine();
                 //получение текущего системного времени и даты
                 String time = DateTime.Now.ToString("MM.dd.yyyy HH:mm:ss");
-                string message = "{" + time + ", " + name+", " + Encoding.UTF8.GetString(aes.Key) +"}";
-                byte[] IV = new byte[16];
+                string message = "{" + time + ", " + name + ";" + Convert.ToBase64String(aes.Key) + "}";
+                keyAES = aes.Key;
+                IV = new byte[16];
                 //отправка зашифрованного сообщения 
                 sender.Send(EncryptStringToBytes_Aes(message, keyA, IV));
                 string data = null;
-                bytes = new byte[16000];
-                //Console.WriteLine("Введите текст для отправки на сервер:");
-                //string tmp = Console.ReadLine();
-                //byte[] buff = Encoding.UTF8.GetBytes(tmp);
-                //sender.Send(buff);
+
+                threadA = new Thread(funcA);
+                threadA.Start();
+                threadSend = new Thread(send);
+                threadSend.Start();
+
+               
 
                 Console.Read();
                 // Освобождаем сокет
-                sender.Shutdown(SocketShutdown.Both);
-                sender.Close();
+              //  sender.Shutdown(SocketShutdown.Both);
+               // sender.Close();
             }
             catch (ArgumentNullException ane)
             {
@@ -75,6 +82,37 @@ public class SynchronousSocketClient
             Console.WriteLine(e.ToString());
         }
     }
+
+    static void send()
+    {
+        while (true)
+        {
+            Console.WriteLine("Введите сообщение для отправки:");
+            string messageToB = Console.ReadLine();
+            byte[] encMessageToB = EncryptStringToBytes_Aes(messageToB, keyAES, IV);
+            threadA.Suspend();
+            //отправка зашифрованного сообщения 
+            sender.Send(encMessageToB);
+            threadA.Resume();
+        }
+    }
+
+
+    static void funcA()
+    {
+        while (true)
+        {
+            byte[] buff = new byte[2048];
+            int countByte = sender.Receive(buff);
+            byte[] mess = new byte[countByte];
+            for (int i = 0; i < countByte; i++)
+                mess[i] = buff[i];
+            string decMessage = DecryptStringFromBytes_Aes(mess, keyAES, IV);
+            Console.WriteLine("Принято сообщение: {0}", decMessage);
+            Console.WriteLine("Введите сообщение для отправки:");
+        }
+    }
+
     //Шифрование сообщения
     static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
     {
@@ -113,6 +151,50 @@ public class SynchronousSocketClient
         return encrypted;
     }
 
+    static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
+    {
+        // Check arguments. 
+        if (cipherText == null || cipherText.Length <= 0)
+            throw new ArgumentNullException("cipherText");
+        if (Key == null || Key.Length <= 0)
+            throw new ArgumentNullException("Key");
+        if (IV == null || IV.Length <= 0)
+            throw new ArgumentNullException("IV");
+
+        // Declare the string used to hold 
+        // the decrypted text. 
+        string plaintext = null;
+
+        // Create an AesCryptoServiceProvider object 
+        // with the specified key and IV. 
+        using (AesCryptoServiceProvider aesAlg = new AesCryptoServiceProvider())
+        {
+            aesAlg.Key = Key;
+            aesAlg.IV = IV;
+
+            // Create a decrytor to perform the stream transform.
+            ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+            // Create the streams used for decryption. 
+            using (MemoryStream msDecrypt = new MemoryStream(cipherText))
+            {
+                using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                {
+                    using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                    {
+
+                        // Read the decrypted bytes from the decrypting stream 
+                        // and place them in a string.
+                        plaintext = srDecrypt.ReadToEnd();
+                    }
+                }
+            }
+
+        }
+
+        return plaintext;
+
+    }
 
     public static int Main(String[] args)
     {
