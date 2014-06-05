@@ -66,8 +66,8 @@ public class SynchronousSocketListener
                 string decrypt = DecryptStringFromBytes_Aes(enc, keyA, IV);
                 Console.WriteLine("Принято сообщение от точки А: {0}", decrypt);
                 string message_time = decrypt.Substring(1,decrypt.IndexOf(',') - 1);//присвоение подстроки (время в принятом сообщении)
-                string message_name = decrypt.Substring(22, decrypt.IndexOf(',') - 1);//присвоение подстроки имени
-                string message_key = decrypt.Substring(decrypt.IndexOf(';')-1, decrypt.IndexOf('}') - 1);//присвоение подстроки ключа
+                string message_name = decrypt.Substring(22, 3);//присвоение подстроки имени
+                string message_key = decrypt.Substring(decrypt.IndexOf(']') + 1, 31);//присвоение подстроки ключа
                 DateTime timeA = Convert.ToDateTime(message_time);//перевод строки в дату
                // DateComparisonResult comparison;//сравнение дат
                 int numSeconds = (time - timeA).Seconds;

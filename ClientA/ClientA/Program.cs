@@ -21,6 +21,7 @@ public class SynchronousSocketClient
             IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());
             IPAddress ipAddress = ipHostInfo.AddressList[0];
             IPEndPoint remoteEP = new IPEndPoint(ipAddress, 11000);
+            IPEndPoint pointB = new IPEndPoint(ipAddress, 11001);
 
             // Create a TCP/IP  socket.
             Socket sender = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -40,7 +41,8 @@ public class SynchronousSocketClient
                 string name = Console.ReadLine();
                 //получение текущего системного времени и даты
                 String time = DateTime.Now.ToString("MM.dd.yyyy HH:mm:ss");
-                string message = "{" + time + ", " + name+";" + Encoding.UTF8.GetString(aes.Key) +"}";
+                keyAES = aes.Key;
+                string message = "{" + time + ", " + name+"] " + Encoding.UTF8.GetString(aes.Key) +"}";
                 byte[] IV = new byte[16];
                 //отправка зашифрованного сообщения 
                 sender.Send(EncryptStringToBytes_Aes(message, keyA, IV));
@@ -55,7 +57,12 @@ public class SynchronousSocketClient
                 // Освобождаем сокет
                 sender.Shutdown(SocketShutdown.Both);
                 sender.Close();
+               
+                
             }
+            
+
+            
             catch (ArgumentNullException ane)
             {
                 Console.WriteLine("ArgumentNullException : {0}", ane.ToString());

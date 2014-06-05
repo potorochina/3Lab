@@ -15,3 +15,4 @@ c:\gitproga\3Lab\ClientB\ClientB\obj\x86\Debug\ClientB.exe
 c:\gitproga\3Lab\ClientB\ClientB\obj\x86\Debug\ClientB.pdb
 c:\gitproga\3Lab\ClientB\ClientB\bin\Debug\ClientB.exe
 c:\gitproga\3Lab\ClientB\ClientB\bin\Debug\ClientB.pdb
+c:\gitproga\3Lab\ClientB\ClientB\obj\x86\Debug\ClientB.csprojResolveAssemblyReference.cache

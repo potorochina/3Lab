@@ -21,9 +21,11 @@ public class SynchronousSocketClient
             IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());//
             IPAddress ipAddress = ipHostInfo.AddressList[0];
             IPEndPoint remoteEP = new IPEndPoint(ipAddress, 11001);
+            IPEndPoint pointA = new IPEndPoint(ipAddress, 11000); //точка доступа клиента А
 
             // Create a TCP/IP  socket.
             Socket sender = new Socket(AddressFamily.InterNetwork,SocketType.Stream, ProtocolType.Tcp);
+            Socket listenerA = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);//сокет для соединения с клиентом А
 
             // Соединяем сокет с удаленной точкой. Catch any errors.
             try
@@ -58,19 +60,61 @@ public class SynchronousSocketClient
                     Console.WriteLine("Полученное сообщение написано давно");
                 else
                     keyAES = Encoding.UTF8.GetBytes(message_key);//перевод из строки в байты сеансового ключа
-                string time = DateTime.Now.ToString("MM.dd.yyyy HH:mm:ss"); 
-                string message = "{" + time + "Hello Alisa. This is Bob"+"}";
-               // hend
-        
+               // string time = DateTime.Now.ToString("MM.dd.yyyy HH:mm:ss"); 
+               // string message = "{" + time + "Hello Alisa. This is Bob"+"}";
 
-
-                   // break;
+               
                 
                 Console.Read();
                 // освобождаем сокет
                 sender.Shutdown(SocketShutdown.Both);
                 sender.Close();
             }
+            catch (ArgumentNullException ane)
+            {
+                Console.WriteLine("ArgumentNullException : {0}", ane.ToString());
+            }
+            catch (SocketException se)
+            {
+                Console.WriteLine("SocketException : {0}", se.ToString());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unexpected exception : {0}", e.ToString());
+            }
+            try
+            {
+                listenerA.Bind(pointA);
+                listenerA.Listen(10);
+                while (true)
+                {
+                    Console.WriteLine("Waiting for a connection point A");
+                    // Программа приостанавливается, ожидая входящее соединение
+                    Socket handlerA = listenerA.Accept();
+                    Console.WriteLine("Point A connected to server");
+                    listenerA.Connect(pointA);
+                    Console.WriteLine("Socket connected to {0}", listenerA.RemoteEndPoint.ToString());
+                    Console.WriteLine("Введите имя человека, с которым хотите общаться: ");
+                    string name = Console.ReadLine();
+                    //получение текущего системного времени и даты
+                    string time = DateTime.Now.ToString("MM.dd.yyyy HH:mm:ss");
+                    string message = "{" + time + "Hello Alisa. This is Bob" + "}";
+                    byte[] IV = new byte[16];
+                    //отправка зашифрованного сообщения 
+                    listenerA.Send(EncryptStringToBytes_Aes(message, keyAES, IV));
+                }
+               
+
+
+
+                Console.Read();
+                // освобождаем сокет
+                listenerA.Shutdown(SocketShutdown.Both);
+                listenerA.Close();
+
+            }
+               
+           
             catch (ArgumentNullException ane)
             {
                 Console.WriteLine("ArgumentNullException : {0}", ane.ToString());
