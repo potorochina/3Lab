@@ -49,7 +49,7 @@ public class SynchronousSocketClient
                 IV = new byte[16];
                 //отправка зашифрованного сообщения 
                 sender.Send(EncryptStringToBytes_Aes(message, keyA, IV));
-                string data = null;
+                //string data = null;
 
                 threadA = new Thread(funcA);
                 threadA.Start();
@@ -90,10 +90,10 @@ public class SynchronousSocketClient
             Console.WriteLine("Введите сообщение для отправки:");
             string messageToB = Console.ReadLine();
             byte[] encMessageToB = EncryptStringToBytes_Aes(messageToB, keyAES, IV);
-            threadA.Suspend();
+            threadA.Suspend();//приостановка потока
             //отправка зашифрованного сообщения 
             sender.Send(encMessageToB);
-            threadA.Resume();
+            threadA.Resume();//возобновление работы потока
         }
     }
 

@@ -56,7 +56,7 @@ public class SynchronousSocketClient
                 string decryptB = DecryptStringFromBytes_Aes(enc, keyB, IV);//расшифровка сообщения от сервера
                 Console.WriteLine("Принято сообщение от сервера: {0}", decryptB);
                 string message_time = decryptB.Substring(1, 19);//присвоение подстроки (время в принятом сообщении)
-                string message_name = decryptB.Substring(22, 5);//присвоение подстроки имени
+                string message_name = decryptB.Substring(decryptB.IndexOf(',') + 2, decryptB.IndexOf(';') - decryptB.IndexOf(',') - 2);//присвоение подстроки имени
                 string message_key = decryptB.Substring(decryptB.IndexOf(';') + 1, decryptB.Length - decryptB.IndexOf(';') - 2);//присвоение подстроки ключа
                 keyAES = Convert.FromBase64String(message_key);
 
