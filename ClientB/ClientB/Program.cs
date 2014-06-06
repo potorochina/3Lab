@@ -79,7 +79,7 @@ public class SynchronousSocketClient
                    {
                        Console.WriteLine("Введите сообщение для отправки:");
                        string messageToA = Console.ReadLine();
-                       byte[] encMessageToA = EncryptStringToBytes_Aes(messageToA, Convert.FromBase64String(message_key), IV);
+                       byte[] encMessageToA = EncryptStringToBytes_Aes(messageToA, keyAES, IV);
                        //отправка зашифрованного сообщения 
                        sender.Send(encMessageToA);
 

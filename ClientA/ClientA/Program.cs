@@ -53,8 +53,18 @@ public class SynchronousSocketClient
 
                 threadA = new Thread(funcA);
                 threadA.Start();
-                threadSend = new Thread(send);
-                threadSend.Start();
+                while (true)
+                {
+                    Console.WriteLine("Введите сообщение для отправки: ");
+                    string messageToB = Console.ReadLine();
+                    byte[] encMessageToB = EncryptStringToBytes_Aes(messageToB, keyAES, IV);
+                    threadA.Suspend();//приостановка потока
+                    //отправка зашифрованного сообщения 
+                    sender.Send(encMessageToB);
+                    threadA.Resume();//возобновление работы потока
+                }
+               // threadSend = new Thread(send);
+               // threadSend.Start();
 
                
 
@@ -83,19 +93,10 @@ public class SynchronousSocketClient
         }
     }
 
-    static void send()
+  /*  static void send()
     {
-        while (true)
-        {
-            Console.WriteLine("Введите сообщение для отправки:");
-            string messageToB = Console.ReadLine();
-            byte[] encMessageToB = EncryptStringToBytes_Aes(messageToB, keyAES, IV);
-            threadA.Suspend();//приостановка потока
-            //отправка зашифрованного сообщения 
-            sender.Send(encMessageToB);
-            threadA.Resume();//возобновление работы потока
-        }
-    }
+        
+    }*/
 
 
     static void funcA()
